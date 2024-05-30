@@ -20,11 +20,11 @@ void merge_sort(int *arr, int low, int high)
         merge(arr, low, mid, high);
     }
 }
-void merge(int *arr, int low, int mid, int high);
+void merge(int *arr, int low, int mid, int high)
 {
     int leftIndex = low;    //左子數列索引
     int rightIndex = mid + 1;   //右子數列索引
-    int teampArrLength = high - low + 1;    //臨時數列tempArr的長度
+    int tempArrLength = high - low + 1;    //臨時數列tempArr的長度
     int tempArr[tempArrLength];     //臨時數列，用來儲存合併過程
     int tempIndex = 0;      //臨時數列索引
 
