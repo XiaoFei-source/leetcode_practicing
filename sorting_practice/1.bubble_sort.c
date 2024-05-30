@@ -32,3 +32,20 @@ void swap(int *a, int *b)
 }
 //call funtion時
 //swap(&x,&y); 定義了兩個整數變數 x 和 y，並將它們的地址傳遞給 swap 函數。
+int main() {
+    int arr[] = {11,9,7,3,15};
+    printf("排序前 = ");
+    for (int i=0; i<5; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    
+    bubble_sort(arr, 5);
+
+    printf("排序後 = ");
+    for (int i=0; i<5; i++) {
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
+    return 0;
+}
