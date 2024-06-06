@@ -5,6 +5,7 @@
 /*最差(完全逆順序): 
 次迭代比較和交換 */
 //平均情況：
+#include <stdio.h>
 void selection_sort(int arr[], int n)
 {
     for (int i = 0; i < n-1; i++){
