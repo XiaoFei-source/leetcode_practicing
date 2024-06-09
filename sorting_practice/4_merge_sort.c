@@ -78,3 +78,37 @@ int main() {
     return 0;
 }
 */
+//別人的寫法，可以參考
+/*
+void merge(int left, int right){
+    int i, j, k;
+    int mid = (left + right) / 2;
+
+    for (k = 0, i = left, j = mid+1 ; i <= mid || j <= right ; k++){
+        if (i > mid)
+            tmp[k] = num[j++];
+        else if (j > right)
+            tmp[k] = num[i++];
+        else if (num[i] < num[j])
+            tmp[k] = num[i++];
+        else
+            tmp[k] = num[j++];
+    }
+    for (i = left, k = 0; i <= right; i++, k++)
+        num[i] = tmp[k];
+}
+
+void mergeSort(int left, int right){
+    int mid = (left + right) / 2;
+
+    if (left < right){
+        mergeSort(left, mid);
+        mergeSort(mid+1, right);
+        merge(left, right);
+    }
+}
+int main(void){
+    mergeSort(0, 9);
+    return 0;
+}
+*/
