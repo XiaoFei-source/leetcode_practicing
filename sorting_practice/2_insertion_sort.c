@@ -9,7 +9,7 @@
 //time complexity:
 //最佳(已排序):O(n)
 /*最差(完全逆順序):(O(n^2) */
-//平均情況： (O(n^2)
+//平均情況： (O(n^2))
 void isertion_sort(int arr[], int n)
 {
     for (int i = 0; i < n ; i++){

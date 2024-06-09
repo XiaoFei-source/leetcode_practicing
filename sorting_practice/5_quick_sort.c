@@ -13,7 +13,6 @@
 //平均情況：O(nlogn)
 
 //swap
-
 void swap(int *a, int *b)
 {   
     int temp = *a;
