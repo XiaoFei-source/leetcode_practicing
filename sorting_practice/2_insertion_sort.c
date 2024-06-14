@@ -10,16 +10,30 @@
 //最佳(已排序):O(n)
 /*最差(完全逆順序):(O(n^2) */
 //平均情況： (O(n^2))
-void isertion_sort(int arr[], int n)
+#include<stdio.h>
+void insertion_sort(int arr[], int n)
 {
-    for (int i = 0; i < n ; i++){
+    for (int i = 1; i < n ; i++){
         int j = i;
+        int temp;
         while (j > 0 && arr[j - 1] > arr[j]){
-            int temp = arr[j];
+            temp = arr[j];
             arr[j] = arr[j-1];
-            arr[j-1] = arr[j];
+            arr[j-1] = temp;
             j--;        //j 從當前元素的位置 i 開始，向"前"遍歷已排序部分
                         //所以需要j--(e.g.j[5]->j[4]->j[3]...)
         }
     }
+}
+int main() {
+    int arr[] = {12, 11, 13, 5, 6};
+    int n = sizeof(arr)/sizeof(arr[0]);
+
+    insertion_sort(arr, n);
+
+    for (int i=0; i<n; i++) {
+        printf("%d ", arr[i]);
+    }
+
+    return 0;
 }
