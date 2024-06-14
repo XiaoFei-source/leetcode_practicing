@@ -55,7 +55,7 @@ int main() {
     }
     printf("\n");
     
-    quick_sort(arr,15, 11);
+    quick_sort(arr,0, 4);
 
     printf("排序後 = ");
     for (int i=0; i<5; i++) {

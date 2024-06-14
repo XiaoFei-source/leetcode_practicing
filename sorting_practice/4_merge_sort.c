@@ -58,8 +58,9 @@ void merge(int *arr, int low, int mid, int high)
     }   //將 tempArr 中的元素複製回 arr 的對應位置。
 }
 
+
 //下方為main，可用於測試用
-/*
+
 int main() {
     int arr[8] = {4, 6, 1, 9, 5, 3, 0, 2};
     int dataNum = 8;
@@ -69,7 +70,7 @@ int main() {
     for (i=0; i<dataNum; i++)
         printf("%d " , arr[i]);
     printf("\n");
-    mergeSort(arr, 0, dataNum - 1);
+    merge_sort(arr, 0, dataNum - 1);
     printf("after sorting: ");
     for (i=0; i<dataNum; i++)
         printf("%d " , arr[i]);
@@ -77,7 +78,7 @@ int main() {
 
     return 0;
 }
-*/
+
 //別人的寫法，可以參考
 /*
 void merge(int left, int right){
