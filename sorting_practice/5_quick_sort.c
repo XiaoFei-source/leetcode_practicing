@@ -12,6 +12,7 @@
 //故=O(N^2)
 //平均情況：O(nlogn)
 
+#include <stdio.h>
 //swap
 void swap(int *a, int *b)
 {   

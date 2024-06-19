@@ -7,55 +7,62 @@
 
 //感覺還可以使用指標改寫，再思考一下
 #include <stdio.h>
+void merge_sort(int arr[], int left, int right);
+void merge(int arr[], int left, int middle, int right);
 
-void merge_sort(int*, int, int);
-void merge(int* ,int ,int ,int);
+void merge_sort(int arr[], int left, int right) {
+    if (left < right) {
+        int middle = left + (right - left) / 2;
 
-void merge_sort(int *arr, int low, int high)
-{
-    if (low < high){
-        int mid = (low+high)/2;
-        merge_sort(arr, low ,mid);
-        merge_sort(arr, mid + 1, high);
-        merge(arr, low, mid, high);
+        merge_sort(arr, left, middle);  //左邊
+        merge_sort(arr, middle + 1, right); //右邊
+        merge(arr, left, middle, right);    //合併兩個排好的
     }
 }
-void merge(int *arr, int low, int mid, int high)
-{
-    int leftIndex = low;    //左子數列索引
-    int rightIndex = mid + 1;   //右子數列索引
-    int tempArrLength = high - low + 1;    //臨時數列tempArr的長度
-    int tempArr[tempArrLength];     //臨時數列，用來儲存合併過程
-    int tempIndex = 0;      //臨時數列索引
 
-    while (leftIndex < mid && rightIndex <= high){ //遍歷左右數列
-        if (arr[leftIndex] <= arr[rightIndex]){
-            tempArr[tempIndex] = arr[leftIndex];
-            leftIndex++;
+// 合併函數
+void merge(int arr[], int left, int middle, int right) {
+    int i, j, k;
+    int n1 = middle - left + 1;
+    int n2 = right - middle;
+
+    int L[n1], R[n2]; // 創建臨時陣列
+
+    for (i = 0; i < n1; i++) {      // 複製數據到臨時陣列
+        L[i] = arr[left + i];
+    }
+    for (j = 0; j < n2; j++) {
+        R[j] = arr[middle + 1 + j];
+    }
+
+    // 合併臨時陣列回原陣列
+    i = 0; // 初始左半部分索引
+    j = 0; // 初始右半部分索引
+    k = left; // 初始合併後陣列索引
+
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) {
+            arr[k] = L[i];
+            i++;
         } else {
-            tempArr[tempIndex] = arr[rightIndex];
-            rightIndex++;
+            arr[k] = R[j];
+            j++;
         }
-        tempIndex++; //左右比較後，儲存至暫存數列
+        k++;
     }
-    if (leftIndex > mid){   //若左子數列已經處理完
-        while (rightIndex <= high){
-            tempArr[tempIndex] = arr[rightIndex];
-            rightIndex++;
-            tempIndex++;
-        }   //將右子數列的剩餘元素依序加入
-    } else {    //否則，也就是右子數列已處理完，但左子數列還有東西
-        while (leftIndex <= mid){
-            tempArr[tempIndex] = arr[leftIndex];
-            leftIndex++;
-            tempIndex++;
-        }   //將左子數列的剩餘元素依序加入
+
+    // 複製剩餘元素（如果有的話）
+    while (i < n1) {
+        arr[k] = L[i];
+        i++;
+        k++;
     }
-    leftIndex = low; //leftIndex 重置為 low，即合併範圍的起始索引。
-    for (tempIndex = 0; tempIndex < tempArrLength; tempIndex++){
-        arr[leftIndex] = tempArr[tempIndex];
-        leftIndex++;
-    }   //將 tempArr 中的元素複製回 arr 的對應位置。
+
+    while (j < n2) {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
 }
 
 
@@ -78,38 +85,3 @@ int main() {
 
     return 0;
 }
-
-//別人的寫法，可以參考
-/*
-void merge(int left, int right){
-    int i, j, k;
-    int mid = (left + right) / 2;
-
-    for (k = 0, i = left, j = mid+1 ; i <= mid || j <= right ; k++){
-        if (i > mid)
-            tmp[k] = num[j++];
-        else if (j > right)
-            tmp[k] = num[i++];
-        else if (num[i] < num[j])
-            tmp[k] = num[i++];
-        else
-            tmp[k] = num[j++];
-    }
-    for (i = left, k = 0; i <= right; i++, k++)
-        num[i] = tmp[k];
-}
-
-void mergeSort(int left, int right){
-    int mid = (left + right) / 2;
-
-    if (left < right){
-        mergeSort(left, mid);
-        mergeSort(mid+1, right);
-        merge(left, right);
-    }
-}
-int main(void){
-    mergeSort(0, 9);
-    return 0;
-}
-*/
